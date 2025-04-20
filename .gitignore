@@ -5,7 +5,7 @@ program
 *.out
 
 # pliki użytkownika
-wyniki.txt
+# wyniki.txt
 
 # IDE/środowisko
 .vscode/

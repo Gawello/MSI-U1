@@ -1,0 +1,26 @@
+
+Wektory wag dla każdej klasy:
+Klasa 0: 0.358408 -0.525482 0.376973 0.0757101 0.38792 -0.475506 
+Klasa 1: -0.358408 0.525482 -0.376973 -0.0757101 -0.38792 0.475506 
+Klasa 2: -0.42032 -0.0582644 -0.367145 -0.00177439 -0.320619 -0.0515935 
+Sample 0 | expected: 1 | predicted: 1 ✅
+Sample 1 | expected: 1 | predicted: 1 ✅
+Sample 2 | expected: 1 | predicted: 1 ✅
+Sample 3 | expected: 1 | predicted: 1 ✅
+Sample 4 | expected: 1 | predicted: 1 ✅
+Sample 5 | expected: 0 | predicted: 0 ✅
+Sample 6 | expected: 0 | predicted: 0 ✅
+Sample 7 | expected: 1 | predicted: 1 ✅
+Sample 8 | expected: 1 | predicted: 1 ✅
+Sample 9 | expected: 0 | predicted: 0 ✅
+Sample 10 | expected: 0 | predicted: 0 ✅
+Sample 11 | expected: 1 | predicted: 1 ✅
+Sample 12 | expected: 1 | predicted: 1 ✅
+Sample 13 | expected: 1 | predicted: 1 ✅
+Sample 14 | expected: 1 | predicted: 1 ✅
+Sample 15 | expected: 1 | predicted: 1 ✅
+
+Macierz pomyłek:
+4 0 0 
+0 12 0 
+0 0 0 
