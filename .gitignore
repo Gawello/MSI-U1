@@ -1,0 +1,13 @@
+# pliki wynikowe
+*.o
+program
+*.exe
+*.out
+
+# pliki użytkownika
+wyniki.txt
+
+# IDE/środowisko
+.vscode/
+*.swp
+
