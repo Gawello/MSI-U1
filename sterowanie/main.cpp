@@ -3,8 +3,9 @@
 #include <fstream>
 #include "../metoda/classifier.h"
 #include "../problem/sample_data.h"
+#include <sstream>
 
-void trainClassifiers(std::vector<Classifier>& classifiers, const std::vector<Vector2D>& samples, const std::vector<int>& labels)
+void trainClassifiers(std::vector<Classifier> &classifiers, const std::vector<Vector2D> &samples, const std::vector<int> &labels)
 {
     for (int k = 0; k < 3; ++k)
     {
@@ -13,10 +14,10 @@ void trainClassifiers(std::vector<Classifier>& classifiers, const std::vector<Ve
 }
 
 void testAndPrintResults(
-    const std::vector<Classifier>& classifiers,
-    const std::vector<Vector2D>& samples,
-    const std::vector<int>& labels,
-    std::ostream& out,
+    const std::vector<Classifier> &classifiers,
+    const std::vector<Vector2D> &samples,
+    const std::vector<int> &labels,
+    std::ostream &out,
     bool printToConsole = true)
 {
     int confusion[3][3] = {0};
@@ -75,13 +76,13 @@ void testAndPrintResults(
     }
 }
 
-void saveWeightsToFile(std::ofstream& log, const std::vector<Classifier>& classifiers)
+void saveWeightsToFile(std::ofstream &log, const std::vector<Classifier> &classifiers)
 {
     log << "\nWektory wag dla każdej klasy:\n";
     for (size_t k = 0; k < classifiers.size(); ++k)
     {
         log << "Klasa " << k << ": ";
-        const auto& w = classifiers[k].getWeights();
+        const auto &w = classifiers[k].getWeights();
         for (double wi : w)
         {
             log << wi << " ";
@@ -105,6 +106,7 @@ int main()
         std::cout << "\n=== MENU ===\n";
         std::cout << "1. Uruchom klasyfikację (na podstawie obrazu 2D)\n";
         std::cout << "2. Zapisz wyniki do pliku 'wyniki.txt'\n";
+        std::cout << "3. Wczytaj obraz z pliku tekstowego (np. obraz.txt)\n";
         std::cout << "0. Wyjście\n";
         std::cout << "Wybierz opcję: ";
 
@@ -131,6 +133,28 @@ int main()
             testAndPrintResults(classifiers, samples, labels, log, false);
             log.close();
             std::cout << "Wyniki zapisano do pliku 'wyniki.txt'\n";
+            break;
+        }
+
+        case 3:
+        {
+            std::string filename;
+            std::cout << "Podaj nazwę pliku z obrazem: ";
+            std::cin >> filename;
+
+            Image loadedImage = loadImageFromFile(filename);
+
+            if (loadedImage.empty())
+            {
+                std::cout << "Nie wczytano obrazu. Sprawdź plik.\n";
+                break;
+            }
+
+            // wyczyść stare próbki
+            samples.clear();
+            labels.clear();
+            generateDatasetFromImage(loadedImage, samples, labels);
+            std::cout << "Obraz wczytany, wygenerowano " << samples.size() << " próbek.\n";
             break;
         }
 

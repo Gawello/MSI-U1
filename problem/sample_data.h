@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "vector2d.h"
+#include <sstream>
 
 using Image = std::vector<std::vector<int>>;
 
@@ -108,4 +109,33 @@ inline void generateDatasetFromImage(const Image &img, std::vector<Vector2D> &sa
             }
         }
     }
+}
+
+inline Image loadImageFromFile(const std::string &filename)
+{
+    Image img;
+    std::ifstream in(filename);
+    if (!in.is_open())
+    {
+        std::cerr << "Błąd: nie można otworzyć pliku " << filename << std::endl;
+        return img;
+    }
+
+    std::string line;
+    while (std::getline(in, line))
+    {
+        std::istringstream iss(line);
+        std::vector<int> row;
+        int val;
+        while (iss >> val)
+        {
+            row.push_back(val);
+        }
+        if (!row.empty())
+        {
+            img.push_back(row);
+        }
+    }
+
+    return img;
 }
